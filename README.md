@@ -28,8 +28,8 @@ http://www.autohotkey.com/
 
 **HTML**
 
-- <kbd>Cntr</kbd><kbd>Shift</kbd>#<kbd>h</kbd> : writes an HTML skeleton at cursor position
-- 
+- <kbd>Cntr</kbd><kbd>Shift</kbd><kbd>h</kbd> : writes an HTML skeleton at cursor position
+
 
 
 
