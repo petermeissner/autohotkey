@@ -8,7 +8,7 @@ http://www.autohotkey.com/
 
 **Explorer**
 
-- <kbd>Cntr</kbd><kbd>Shift</kbd><kbd>F12</kbd> : open document in Notepad++
+- <kbd>Cntr</kbd><kbd>Shift</kbd><kbd>F12</kbd> : open (any) document in Notepad++ for editing
 - <kbd>Cntr</kbd><kbd>Shift</kbd><kbd>RightMouse</kbd> : copy full path to file using `'/'` instead of `'\'`
 
 
