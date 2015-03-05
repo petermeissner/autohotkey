@@ -17,9 +17,12 @@ AutoTrim, off
 ; hitting Cntr-Shift-F12 will open a document marked in Explorer in Notepad++
 ; only works when Notepad++ is installed 
 ; ---------------------------------------------------------------------------------------
+#IfWinActive ahk_class CabinetWClass
 ^+f12::
 Send !fn
 Send {enter}
+return
+#IfWinActive
 return
 
 
@@ -60,6 +63,7 @@ Send {space}`%>`%{space}
 return
 
 
+
 ; ---------------------------------------------------------------------------------------
 ; convenience writing of '%in%' by simply typing in 'iin'
 ; ---------------------------------------------------------------------------------------
@@ -67,7 +71,7 @@ return
 
 
 ; ---------------------------------------------------------------------------------------
-; convenience writing of if skeletton by simply typing 'iif'
+; convenience writing of if skeleton by simply typing 'iif'
 ; ---------------------------------------------------------------------------------------
 ::iif::if ( ) {{}`n`n{}}
 
