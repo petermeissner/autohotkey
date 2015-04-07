@@ -7,6 +7,41 @@
 AutoTrim, off
 
 
+; =======================================================================================
+; AutoHotKey
+; =======================================================================================
+
+; ---------------------------------------------------------------------------------------
+; reloading AHK Scripts automatically whenever they are changed and saved
+; ---------------------------------------------------------------------------------------
+
+~^s::
+SetTitleMatchMode, 2 ;--- works in ANYTHING displaying scripts name as ANY part of the window title
+IfWinActive,.ahk
+{
+  SplashImage , ,b1 cw191919 ct9acd32, %A_ScriptName%, Reloaded
+  Sleep,500
+  SplashImage, Off
+  Reload
+}
+return
+
+
+; =======================================================================================
+; Misc
+; =======================================================================================
+
+; ---------------------------------------------------------------------------------------
+; get RGB color at cursor
+; ---------------------------------------------------------------------------------------
+
+^!c::  ; Control+Alt+Z hotkey.
+MouseGetPos, MouseX, MouseY
+PixelGetColor, color, %MouseX%, %MouseY%, RGB
+clipboard = %color%
+StringReplace, clipboard , clipboard , 0x,#,All
+return
+
 
 ; =======================================================================================
 ; Windows Explorer Stuff
@@ -19,7 +54,7 @@ AutoTrim, off
 ; ---------------------------------------------------------------------------------------
 #IfWinActive ahk_class CabinetWClass
 ^+f12::
-Send !fn
+Send !dn
 Send {enter}
 return
 #IfWinActive
@@ -33,17 +68,41 @@ return
 #IfWinActive ahk_class CabinetWClass
 ^+RButton::
 Send +{RButton}
-Send {a}
+Send {p}
+clipboard = %clipboard%
 StringReplace, clipboard, clipboard, \, /, All 
 return
 #IfWinActive
 return
 
 
-
 ; =======================================================================================
 ; RStuff
-; =======================================================================================
+
+
+; ---------------------------------------------------------------------------------------
+; Cntr-Enter within Notepad++ sends lines from Notepad++ to Rgui: 
+; ---------------------------------------------------------------------------------------
+
+#IfWinActive ahk_class Notepad++
+  
+  ^enter::
+    IfWinNotExist, ahk_class Rgui 
+      Run, "C:\Program Files\R\R-3.1.3\bin\x64\Rgui.exe"
+    
+    clipboard=
+    Send ^c 
+    if clipboard=
+    {
+      Send {HOME}+{END}^c{END}{Down}{HOME}
+    }
+    
+    WinActivate, ahk_class Rgui 
+    Send ^v {Enter}
+    
+    WinActivate, ahk_class Notepad++ 
+  return
+
 
 
 ; ---------------------------------------------------------------------------------------
@@ -59,9 +118,16 @@ return
 ; Cntr-Shift-# writes the R/MagrittR pipe operator 
 ; ---------------------------------------------------------------------------------------
 ^+#::
-Send {space}`%>`%{space}
+Send {space}`%>`%{space} 
 return
 
+
+; ---------------------------------------------------------------------------------------
+; Cntr-Shift-# writes the R/MagrittR pipe operator 
+; ---------------------------------------------------------------------------------------
+^+ä::
+Send {space}`%<>`%{space}
+return
 
 
 ; ---------------------------------------------------------------------------------------
