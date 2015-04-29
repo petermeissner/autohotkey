@@ -68,6 +68,15 @@ return
 ; =============================================================================
 ; RStuff
 
+; -----------------------------------------------------------------------------
+; Cntr-Alt-h within RStudio makes current file location working dir location 
+; -----------------------------------------------------------------------------
+
+#IfWinActive ahk_exe rstudio.exe
+^!h::
+  Send {Alt Down}sw{Down}{Enter}{Alt Up}
+  return 
+#IfWinActive
 
 ; -----------------------------------------------------------------------------
 ; Cntr-Enter within Notepad++ sends lines from Notepad++ to Rgui: 
@@ -80,12 +89,18 @@ return
     IfWinNotExist, ahk_class Rgui 
     {
       WinActivate, ahk_class Notepad++ 
+      sleep 200 
+      Send ^s
+      sleep 200 
       WinGetTitle, Title, A
         Needle := "(.*)\\"
         RegExMatch(Title, Needle, OutVar)
+      sleep 200 
       ; make sure, path to Rexecutable is right
       Run, "C:\Program Files\R\R-3.1.3\bin\x64\Rgui.exe",  %OutVar%
-      sleep 1000 
+      sleep 500
+      SendInput getwd(){Enter} 
+      sleep 500
     }
     
     ; switch to Notepad++
