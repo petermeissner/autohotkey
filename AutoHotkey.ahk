@@ -28,6 +28,8 @@ IfWinActive,.ahk
 return
 
 
+
+
 ; =============================================================================
 ; Misc
 ; =============================================================================
@@ -36,12 +38,58 @@ return
 ; get RGB color at cursor
 ; -----------------------------------------------------------------------------
 
-^!c::  ; Control+Alt+c hotkey.
+^!LButton::  ; Control+Alt+MouseClick hotkey.
 MouseGetPos, MouseX, MouseY
 PixelGetColor, color, %MouseX%, %MouseY%, RGB
 clipboard = %color%
 StringReplace, clipboard , clipboard , 0x,#,All
 return
+
+
+; =============================================================================
+; cmd.exe
+; =============================================================================
+
+; -----------------------------------------------------------------------------
+; Cntr-Alt-T should start terminal
+; -----------------------------------------------------------------------------
+
+^!T::Run, cmd.exe /K "cd /d C:\dropbox"
+return 
+
+
+; -----------------------------------------------------------------------------
+; Cntr-L should clear screen
+; -----------------------------------------------------------------------------
+#IfWinActive ahk_class ConsoleWindowClass
+^L::
+Send cls{Enter}
+return
+
+#IfWinActive
+
+
+; =============================================================================
+; Rstudio
+; =============================================================================
+
+; -----------------------------------------------------------------------------
+; Cntr-Alt-h within RStudio makes current file location working dir location 
+; -----------------------------------------------------------------------------
+
+#IfWinActive ahk_exe rstudio.exe
+^!w::
+  Send {Alt Down}sw{Down}{Enter}{Alt Up}
+  return 
+#IfWinActive
+
+#IfWinActive ahk_exe rstudio.exe
+^!F10::
+  Send ^l ^+{f10}
+  return 
+#IfWinActive
+
+
 
 
 ; =============================================================================
@@ -64,19 +112,21 @@ return
 #IfWinActive
 
 
+; -----------------------------------------------------------------------------
+; hitting Cntr-RightMousButton will translate to Alt-Up
+; which means goToParentFolder
+; -----------------------------------------------------------------------------
+#IfWinActive ahk_class CabinetWClass
+^RButton::
+Send !{Up}
+return
+
+#IfWinActive
+
+
 
 ; =============================================================================
 ; RStuff
-
-; -----------------------------------------------------------------------------
-; Cntr-Alt-h within RStudio makes current file location working dir location 
-; -----------------------------------------------------------------------------
-
-#IfWinActive ahk_exe rstudio.exe
-^!h::
-  Send {Alt Down}sw{Down}{Enter}{Alt Up}
-  return 
-#IfWinActive
 
 ; -----------------------------------------------------------------------------
 ; Cntr-Enter within Notepad++ sends lines from Notepad++ to Rgui: 
@@ -97,7 +147,7 @@ return
         RegExMatch(Title, Needle, OutVar)
       sleep 200 
       ; make sure, path to Rexecutable is right
-      Run, "C:\Program Files\R\R-3.1.3\bin\x64\Rgui.exe",  %OutVar%
+      Run, "C:\Program Files\R\R-3.2.1\bin\x64\Rgui.exe",  %OutVar%
       sleep 500
       SendInput getwd(){Enter} 
       sleep 500
@@ -193,7 +243,7 @@ return
 ; -----------------------------------------------------------------------------
 ; write (minimal) HTML skelleton
 ; -----------------------------------------------------------------------------
-^!h::
+^!+h::
 SendInput, <{!}DOCTYPE HTML>`n`n<html>`n`n<head></head> <{!}-- HEAD -->`n`n<title></title> `n`n<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">`n <meta http-equiv="expires"      content="0"> `n`n<meta name="author"      content="Peter Meissner"> `n<meta name="keywords"    content=""> `n<meta name="description" content="">`n`n<script src="js/my.js"></script>`n<link   rel="stylesheet" type="text/css" href="mystyle.css">`n`n</head>`n`n<body> <{!}-- BODY -->`n`nHälloWörld{!}`n`n</body>`n`n</html>`n
 
 
