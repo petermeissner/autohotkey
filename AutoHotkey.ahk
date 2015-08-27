@@ -233,6 +233,11 @@ StringReplace, clipboard, clipboard, \, /, All
 SendInput, %clipboard% 
 return 
 
+; -----------------------------------------------------------------------------
+; convenience copy-pasting of Windows-paths into R conformant layout (replacing all '\' by '/')
+; -----------------------------------------------------------------------------
+
+::tttt::test_that(`n"",`n{{}`n
 
 
 ; =============================================================================

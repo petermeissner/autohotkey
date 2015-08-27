@@ -9,7 +9,13 @@ My personal ShortCuts and HotKeys enhancing workflow on Windows machines.
 
 **General**
 
-- <kbd>Cntr</kbd><kbd>Alt</kbd><kbd>LeftMouse</kbd> : detect color at cursor and put it into clipboard as hex RGB (e.g. <span style="color: #4183C4;"> #4183C4 </s> )  
+- <kbd>Cntr</kbd><kbd>Alt</kbd><kbd>LeftMouse</kbd> : detect color at cursor and put it into clipboard as hex RGB (e.g. <span style="color: #4183C4;"> #4183C4 </s> )
+
+**Terminal**
+
+- <kbd>Cntr</kbd><kbd>Alt</kbd><kbd>T</kbd> : open terminal (cmd.exe) at `C:/Dropbox`
+- <kbd>Cntr</kbd><kbd>L</kbd> : if in terminal clear terminal 
+
 
 **Explorer**
 
@@ -31,6 +37,7 @@ My personal ShortCuts and HotKeys enhancing workflow on Windows machines.
 **RStudio**
 
 - <kbd>Cntr</kbd><kbd>Alt</kbd><kbd>F10</kbd> clear screen and restart R session
+- <kbd>Cntr</kbd><kbd>Alt</kbd><kbd>W</kbd> current file path is used as working directory in R console
 
 **Notepad++**
 
