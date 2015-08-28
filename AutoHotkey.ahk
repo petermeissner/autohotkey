@@ -59,7 +59,7 @@ return
 
 
 ; -----------------------------------------------------------------------------
-; Cntr-L should clear screen
+; Cntr-L should clear terminal screen
 ; -----------------------------------------------------------------------------
 #IfWinActive ahk_class ConsoleWindowClass
 ^L::
@@ -69,7 +69,7 @@ return
 #IfWinActive
 
 ; -----------------------------------------------------------------------------
-; Cntr-L should clear screen
+; Alt-F4 should close terminal
 ; -----------------------------------------------------------------------------
 
 #IfWinActive, ahk_class ConsoleWindowClass
@@ -83,7 +83,7 @@ return
 ; =============================================================================
 
 ; -----------------------------------------------------------------------------
-; Cntr-Alt-h within RStudio makes current file location working dir location 
+; Cntr-Alt-w within RStudio makes current file location working dir location 
 ; -----------------------------------------------------------------------------
 
 #IfWinActive ahk_exe rstudio.exe
@@ -133,7 +133,7 @@ return
 #IfWinActive
 
 ; -----------------------------------------------------------------------------
-; hitting Cntr-Alt-Enter will open file in Notepad++
+; hitting Cntr-Enter will open file in Notepad++
 ; which means goToParentFolder
 ; -----------------------------------------------------------------------------
 
@@ -242,7 +242,7 @@ return
 ; -----------------------------------------------------------------------------
 ; convenience for loop skeletton by simply typing 'ffor'
 ; -----------------------------------------------------------------------------
-::ffor::for ( i in) {{}`n`n{}}{Up}{Up}{Right}{Right}{Right}{Right}{Right}{Right}{Right}{Right}{Right}
+::ffor::for ( i in) {{}`n`n{}}
 
 
 ; -----------------------------------------------------------------------------
