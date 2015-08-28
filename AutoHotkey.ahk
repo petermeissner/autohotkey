@@ -68,6 +68,15 @@ return
 
 #IfWinActive
 
+; -----------------------------------------------------------------------------
+; Cntr-L should clear screen
+; -----------------------------------------------------------------------------
+
+#IfWinActive, ahk_class ConsoleWindowClass
+    !F4::WinClose, A
+
+#IfWinActive
+
 
 ; =============================================================================
 ; Rstudio
@@ -123,7 +132,18 @@ return
 
 #IfWinActive
 
+; -----------------------------------------------------------------------------
+; hitting Cntr-Alt-Enter will open file in Notepad++
+; which means goToParentFolder
+; -----------------------------------------------------------------------------
 
+#IfWinActive ahk_class CabinetWClass
+^enter::
+Send, ^c
+ClipWait ;waits for the clipboard to have content
+Run,  "C:\Program Files (x86)\Notepad++\notepad++.exe" %clipboard%
+return 
+#IfWinActive
 
 ; =============================================================================
 ; RStuff
